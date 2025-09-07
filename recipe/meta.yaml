@@ -12,7 +12,7 @@ source:
 
 build:
   skip: true  # [not linux]
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('libdrm', max_pin='x.x') }}
 
@@ -21,17 +21,20 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
     - meson
+    - pkg-config
+    - cmake
   host:
     - libpciaccess
 
 test:
   commands:
-    - test -f $PREFIX/include/xf86drm.h
-    - test -f $PREFIX/include/xf86drmMode.h
-    - test -f $PREFIX/include/libsync.h
-    - test -d $PREFIX/include/libdrm
-    - test -f $PREFIX/lib/libdrm.so
-    - test -f $PREFIX/lib/libdrm.so.2
+    - test -f ${PREFIX}/include/xf86drm.h
+    - test -f ${PREFIX}/include/xf86drmMode.h
+    - test -f ${PREFIX}/include/libsync.h
+    - test -d ${PREFIX}/include/libdrm
+    - test -f ${PREFIX}/lib/libdrm.so
+    - test -f ${PREFIX}/lib/libdrm.so.2
+    - test -f ${PREFIX}/include/libdrm/intel_bufmgr.h
 
 about:
   home: https://gitlab.freedesktop.org/mesa/drm

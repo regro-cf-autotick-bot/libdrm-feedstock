@@ -1,6 +1,5 @@
-meson setup builddir \
-	--buildtype release \
-	--prefix=$PREFIX \
-	--libdir=lib
+set -ex
+
+meson setup builddir ${MESON_ARGS} -Dintel=enabled
 
 meson install -C builddir
